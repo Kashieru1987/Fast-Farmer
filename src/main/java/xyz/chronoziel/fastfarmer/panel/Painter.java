@@ -15,9 +15,14 @@ public class Painter {
 	public void init() {
 		ArrayList<Consumer<Graphics2D>> paintQueue = new ArrayList<Consumer<Graphics2D>>();
 		
+		paintQueue.add(Painter::SizeTesting);
 		paintQueue.add(Painter::Circle);
 		
 		GameElements.getInstance().getGamePanel().setPaintQueue(paintQueue);
+	}
+
+	private static void SizeTesting(Graphics2D g2) {
+		System.out.println(GameElements.getInstance().getGamePanel().getSize());
 	}
 
 	/**
