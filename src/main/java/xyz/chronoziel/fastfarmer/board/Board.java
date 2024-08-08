@@ -27,6 +27,32 @@ public class Board {
 		}
 	}
 
-	//TODO: do setters and getters for rows and tiles
+	public void setBoard(Board board) {
+		setBoard(board.getRaw());
+	}
+
+	public void setBoard(ArrayList<ArrayList<Tile>> board) {
+		this.board = board;
+	}
+
+	public void setRow(int index, ArrayList<Tile> row) {
+		board.set(index, row);
+	}
+
+	public void setTile(int row, int column, Tile tile) {
+		getRow(row).set(column, tile);
+	}
+
+	public ArrayList<ArrayList<Tile>> getRaw(){
+		return board;
+	}
+
+	public ArrayList<Tile> getRow(int index){
+		return board.get(index);
+	}
+
+	public Tile getTile(int row, int column) {
+		return getRow(row).get(column);
+	}
 
 }
