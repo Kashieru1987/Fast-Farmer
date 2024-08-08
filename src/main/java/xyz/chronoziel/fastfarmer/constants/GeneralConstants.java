@@ -11,5 +11,6 @@ public class GeneralConstants {
 	public final static String TITLE = "Fast Farmer";
 	public final static Dimension SIZE = new Dimension(800, 600);
 	public final static Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
+	public static final Dimension DEFAULT_BOARD_SIZE = new Dimension(10, 10);
 
 }
