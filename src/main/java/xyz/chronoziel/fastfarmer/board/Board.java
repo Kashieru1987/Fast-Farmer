@@ -18,6 +18,7 @@ public class Board {
 	}
 
 	public Board(int height, int width) {
+		board = new ArrayList<ArrayList<Tile>>();
 		for(int i = 0; i < height; i++) {
 			ArrayList<Tile> row = new ArrayList<Tile>();
 			for(int n = 0; n < width; n++) {
@@ -53,6 +54,14 @@ public class Board {
 
 	public Tile getTile(int row, int column) {
 		return getRow(row).get(column);
+	}
+
+	public int getRowsHigh() {
+		return board.size();
+	}
+	
+	public int getColumnsWide() {
+		return getRow(0).size();
 	}
 
 }
