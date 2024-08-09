@@ -1,9 +1,11 @@
-package xyz.chronoziel.fastfarmer;
+package xyz.chronoziel.fastfarmer.frame;
 
-import java.awt.Point;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JSplitPane;
 
+import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 
 @SuppressWarnings("serial")
@@ -11,13 +13,19 @@ public class GameFrame extends JFrame {
 
 	public GameFrame() {
 		this.setTitle(GeneralConstants.TITLE);
-		this.setLocation(new Point(10, 10));
-		this.setSize(GeneralConstants.SIZE);
+		this.setLocation(GeneralConstants.POSITION);
+		this.setMinimumSize(GeneralConstants.SIZE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GameElements gameElements = GameElements.getInstance();
 		gameElements.getPainter().init();
-		this.add(gameElements.getGamePanel());
+		
+		JSplitPane pane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameElements.getGamePanel(), gameElements.getPalette());
+		pane.setOneTouchExpandable(true);
+		pane.setDividerLocation(600);
+		
+		this.add(pane);
+		
 		this.addMouseListener(gameElements.getMouseHandler());
 		this.addMouseMotionListener(gameElements.getMouseHandler());
 

@@ -3,6 +3,7 @@ package xyz.chronoziel.fastfarmer;
 import java.awt.Point;
 
 import xyz.chronoziel.fastfarmer.board.Board;
+import xyz.chronoziel.fastfarmer.frame.Palette;
 import xyz.chronoziel.fastfarmer.inputhandler.MouseHandler;
 import xyz.chronoziel.fastfarmer.panel.GamePanel;
 import xyz.chronoziel.fastfarmer.panel.Painter;
@@ -13,11 +14,13 @@ public class GameElements {
 	private volatile Point mousePosition;
 	private MouseHandler mouseHandler;
 	private GamePanel gamePanel;
+	private Palette palette;
 	private Painter painter;
 	private Board board;
 
 	private GameElements() {
 		gamePanel = new GamePanel();
+		palette = new Palette();
 		mousePosition = new Point();
 		mouseHandler = new MouseHandler();
 		painter = new Painter();
@@ -43,6 +46,10 @@ public class GameElements {
 
 	public GamePanel getGamePanel() {
 		return this.gamePanel;
+	}
+	
+	public Palette getPalette() {
+		return this.palette;
 	}
 
 	public Painter getPainter() {

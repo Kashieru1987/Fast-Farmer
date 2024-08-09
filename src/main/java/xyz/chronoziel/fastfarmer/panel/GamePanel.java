@@ -8,6 +8,8 @@ import java.util.function.Consumer;
 
 import javax.swing.JPanel;
 
+import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
+
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
 
@@ -19,6 +21,7 @@ public class GamePanel extends JPanel {
 
 	public GamePanel() {
 		this.setBackground(Color.DARK_GRAY);
+		this.setMinimumSize(GeneralConstants.PANEL_SIZE);
 	}
 
 	@Override
