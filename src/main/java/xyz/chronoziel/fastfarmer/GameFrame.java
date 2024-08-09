@@ -15,8 +15,11 @@ public class GameFrame extends JFrame {
 		this.setSize(GeneralConstants.SIZE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		GameElements.getInstance().getPainter().init();
-		this.add(GameElements.getInstance().getGamePanel());
+		GameElements gameElements = GameElements.getInstance();
+		gameElements.getPainter().init();
+		this.add(gameElements.getGamePanel());
+		this.addMouseListener(gameElements.getMouseHandler());
+		this.addMouseMotionListener(gameElements.getMouseHandler());
 
 	}
 

@@ -1,18 +1,25 @@
 package xyz.chronoziel.fastfarmer;
 
+import java.awt.Point;
+
 import xyz.chronoziel.fastfarmer.board.Board;
+import xyz.chronoziel.fastfarmer.inputhandler.MouseHandler;
 import xyz.chronoziel.fastfarmer.panel.GamePanel;
 import xyz.chronoziel.fastfarmer.panel.Painter;
 
 public class GameElements {
 
 	private volatile static GameElements instance;
+	private volatile Point mousePosition;
+	private MouseHandler mouseHandler;
 	private GamePanel gamePanel;
 	private Painter painter;
 	private Board board;
 
 	private GameElements() {
 		gamePanel = new GamePanel();
+		mousePosition = new Point();
+		mouseHandler = new MouseHandler();
 		painter = new Painter();
 		board = new Board();
 	}
@@ -30,16 +37,28 @@ public class GameElements {
 		return gameElements;
 	}
 
+	public MouseHandler getMouseHandler() {
+		return mouseHandler;
+	}
+
 	public GamePanel getGamePanel() {
-		return gamePanel;
+		return this.gamePanel;
 	}
 
 	public Painter getPainter() {
-		return painter;
+		return this.painter;
 	}
 
 	public Board getBoard() {
-		return board;
+		return this.board;
+	}
+
+	public void setMousePosition(Point mousePosition) {
+		this.mousePosition = mousePosition;
+	}
+	
+	public Point getMousePosition() {
+		return this.mousePosition;
 	}
 
 }
