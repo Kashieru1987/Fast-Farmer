@@ -1,5 +1,8 @@
 package xyz.chronoziel.fastfarmer.frame;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
@@ -24,8 +27,11 @@ public class GameFrame extends JFrame {
 		
 		this.add(pane);
 		
-		this.addMouseListener(gameElements.getMouseHandler());
-		this.addMouseMotionListener(gameElements.getMouseHandler());
+		gameElements.getGamePanel().addMouseListener(gameElements.getMouseHandler());
+		gameElements.getGamePanel().addMouseMotionListener(gameElements.getMouseHandler());
+		
+//		this.addMouseListener(gameElements.getMouseHandler());
+//		this.addMouseMotionListener(gameElements.getMouseHandler());
 
 	}
 

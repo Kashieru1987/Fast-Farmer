@@ -23,6 +23,7 @@ public abstract class Tool implements Useable, Cloneable {
 
 		@Override
 		public void useTool() {
+			System.out.println("hoe used");
 		}
 		
 		@Override
@@ -40,6 +41,7 @@ public abstract class Tool implements Useable, Cloneable {
 		
 		@Override
 		public void useTool() {
+			System.out.println("watering can used");
 		}
 
 		@Override
@@ -56,7 +58,7 @@ public abstract class Tool implements Useable, Cloneable {
 		
 		@Override
 		public void useTool() {
-			
+			System.out.println("shovel used");
 		}
 		
 		@Override
