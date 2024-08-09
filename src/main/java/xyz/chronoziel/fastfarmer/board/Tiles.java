@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public enum Tiles {
 
-	GRASS(Color.GREEN),
+	GRASS(new Color(0, 128, 0)),
 	SOIL(new Color(101,67,33));
 
 	Color color;
