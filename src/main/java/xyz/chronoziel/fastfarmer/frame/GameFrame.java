@@ -1,7 +1,5 @@
 package xyz.chronoziel.fastfarmer.frame;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 

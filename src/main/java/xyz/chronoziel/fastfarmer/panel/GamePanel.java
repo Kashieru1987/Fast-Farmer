@@ -1,6 +1,5 @@
 package xyz.chronoziel.fastfarmer.panel;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public GamePanel() {
-		this.setBackground(Color.DARK_GRAY);
+		this.setBackground(GeneralConstants.BACKGROUND_COLOR);
 		this.setMinimumSize(GeneralConstants.PANEL_SIZE);
 	}
 

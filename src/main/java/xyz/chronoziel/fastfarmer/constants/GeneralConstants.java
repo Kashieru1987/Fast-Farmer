@@ -16,7 +16,7 @@ public class GeneralConstants {
 	public final static Dimension SIZE = new Dimension(FRAME_WIDTH_OFFSET + 800, FRAME_HEIGHT_OFFSET + 639);
 	public final static Dimension DEFAULT_BOARD_SIZE = new Dimension(10, 10);
 	public final static Dimension PANEL_SIZE = new Dimension(600, 600);
-	public final static Color BACKGROUND_COLOR = Color.LIGHT_GRAY;
+	public final static Color BACKGROUND_COLOR = Color.DARK_GRAY;
 	public static final Color GRID_LINE_COLOR = Color.DARK_GRAY;
 
 }
