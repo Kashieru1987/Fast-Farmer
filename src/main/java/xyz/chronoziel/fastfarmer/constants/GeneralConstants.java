@@ -18,5 +18,7 @@ public class GeneralConstants {
 	public final static Dimension PANEL_SIZE = new Dimension(600, 600);
 	public final static Color BACKGROUND_COLOR = Color.DARK_GRAY;
 	public static final Color GRID_LINE_COLOR = Color.DARK_GRAY;
+	public static final Color MOUSE_POINTER_COLOR = Color.RED;
+	public static final int TARGET_FPS = 60;
 
 }

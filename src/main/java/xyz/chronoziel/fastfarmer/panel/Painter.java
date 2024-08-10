@@ -2,6 +2,7 @@ package xyz.chronoziel.fastfarmer.panel;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -19,7 +20,7 @@ public class Painter {
 		ArrayList<Consumer<Graphics2D>> paintQueue = new ArrayList<Consumer<Graphics2D>>();
 
 		paintQueue.add(Painter::GameBoard);
-		paintQueue.add(Painter::GridLines);
+		paintQueue.add(Painter::MousePointer);
 
 		GameElements.getInstance().getGamePanel().setPaintQueue(paintQueue);
 	}
@@ -69,8 +70,10 @@ public class Painter {
 
 	}
 
-	private static void GridLines(Graphics2D g2) {
-		
+	private static void MousePointer(Graphics2D g2) {
+		g2.setColor(GeneralConstants.MOUSE_POINTER_COLOR);
+		Point p = GameElements.getInstance().getMousePosition();
+		g2.fillOval(p.x-2, p.y-2, 4, 4);
 	}
 
 }

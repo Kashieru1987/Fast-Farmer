@@ -12,6 +12,7 @@ public class GameElements {
 
 	private volatile static GameElements instance;
 	private volatile Point mousePosition;
+	private Thread gameLoop;
 	private MouseHandler mouseHandler;
 	private GamePanel gamePanel;
 	private Palette palette;
@@ -38,6 +39,12 @@ public class GameElements {
 			}
 		}
 		return gameElements;
+	}
+
+	public void startGameLoop() {
+		gamePanel.setDoGameLoop(true);
+		gameLoop = new Thread(gamePanel);
+		gameLoop.start();
 	}
 
 	public MouseHandler getMouseHandler() {
