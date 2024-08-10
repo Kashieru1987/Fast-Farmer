@@ -61,6 +61,17 @@ public abstract class Tool implements Useable, Cloneable {
 		@Override
 		public void useTool() {
 			System.out.println("watering can used");
+
+			GameElements gameElements = GameElements.getInstance();
+			Board board = gameElements.getBoard();
+			Point pos = gameElements.getMousePosition();
+
+			if(!board.isValidIndex(pos))
+				return;
+			
+			if(board.getTile(pos).getTileType().equals(Tiles.DRY_SOIL)) {
+				board.setTile(pos, new Tile(Tiles.WET_SOIL));
+			}
 		}
 
 		@Override
