@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 import xyz.chronoziel.fastfarmer.constants.TileConstants;
+import xyz.chronoziel.fastfarmer.util.ThreadUtil;
 
 public class Board {
 
@@ -96,7 +97,7 @@ public class Board {
 		case DRY_SOIL -> {
 			new Thread(() -> {
 				
-				ThreadUtil.sleep(TileConstants.DRY_SOIL_TIMEOUT);
+				ThreadUtil.sleepAndVary(TileConstants.DRY_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
 				if(getTile(row, column).equals(tile)) {
 					setTile(row, column, new Tile(Tiles.GRASS));
 				}
@@ -107,7 +108,7 @@ public class Board {
 		case WET_SOIL -> {
 			new Thread(() -> {
 				
-				ThreadUtil.sleep(TileConstants.WET_SOIL_TIMEOUT);
+				ThreadUtil.sleepAndVary(TileConstants.WET_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
 				if(getTile(row, column).equals(tile)) {
 					setTile(row, column, new Tile(Tiles.DRY_SOIL));
 				}
