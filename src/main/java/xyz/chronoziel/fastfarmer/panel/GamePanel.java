@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 
@@ -14,6 +15,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	private ArrayList<Consumer<Graphics2D>> paintQueue;
 	private boolean doGameLoop;
+	private int fpsCounter;
 
 	public void setPaintQueue(ArrayList<Consumer<Graphics2D>> paintQueue) {
 		this.paintQueue = paintQueue;
@@ -32,11 +34,11 @@ public class GamePanel extends JPanel implements Runnable {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
-		for(Consumer<Graphics2D> item : paintQueue) {
+
+		for (Consumer<Graphics2D> item : paintQueue) {
 			item.accept(g2);
 		}
-		
+
 	}
 
 	@Override
@@ -45,15 +47,34 @@ public class GamePanel extends JPanel implements Runnable {
 		long lastTime = System.nanoTime();
 		double ns = 1000000000 / fpsTarget;
 		double delta = 0;
-		
+
+		Timer fpsShouter = new Timer(1000, actionevent -> {
+			System.out.println("FPS - " + fpsCounter);
+			fpsCounter = 0;
+		});
+		fpsShouter.start();
+
 		doGameLoop = true;
-		while(doGameLoop) {
+		while (doGameLoop) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			delta -= (int) delta; //makes sure delta is always in between 0 and 1;
-			
+
+			delta -= (int) delta; // makes sure delta is always in between 0 and 1;
+
 			this.repaint();
+			fpsCounter++;
+
+			long frameTime = System.nanoTime() - now;
+			long sleepTime = (long) ((ns - frameTime) / 1000000);
+			
+			if(sleepTime > 0) {
+				try {
+					Thread.sleep(sleepTime);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 			
 		}
 	}
