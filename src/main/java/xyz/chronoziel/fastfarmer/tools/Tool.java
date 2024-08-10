@@ -1,5 +1,12 @@
 package xyz.chronoziel.fastfarmer.tools;
 
+import java.awt.Point;
+
+import xyz.chronoziel.fastfarmer.GameElements;
+import xyz.chronoziel.fastfarmer.board.Board;
+import xyz.chronoziel.fastfarmer.board.Tile;
+import xyz.chronoziel.fastfarmer.board.Tiles;
+
 public abstract class Tool implements Useable, Cloneable {
 
 	private Tool() {
@@ -24,6 +31,18 @@ public abstract class Tool implements Useable, Cloneable {
 		@Override
 		public void useTool() {
 			System.out.println("hoe used");
+			
+			GameElements gameElements = GameElements.getInstance();
+			Board board = gameElements.getBoard();
+			Point pos = gameElements.getMousePosition();
+			
+			if(!board.isValidIndex(pos))
+				return;
+			
+			if(board.getTile(pos).getTileType().equals(Tiles.GRASS)) {
+				board.setTile(pos, new Tile(Tiles.DRY_SOIL));
+			}
+			
 		}
 		
 		@Override

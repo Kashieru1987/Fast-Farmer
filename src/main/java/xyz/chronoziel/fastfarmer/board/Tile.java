@@ -4,22 +4,21 @@ import java.awt.Color;
 
 public class Tile {
 
-	Color color;
+	private Tiles tileType;
+	private Color color;
 
-	public Tile(Color color) {
-		this.color = color;
-	}
 
 	public Tile(Tiles tileType) {
-		this(tileType.getColor());
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
+		this.tileType = tileType;
+		this.color = tileType.getColor();
 	}
 
 	public Color getColor() {
 		return this.color;
+	}
+
+	public Tiles getTileType() {
+		return tileType;
 	}
 
 }

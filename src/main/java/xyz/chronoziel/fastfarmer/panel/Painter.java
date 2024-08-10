@@ -1,6 +1,5 @@
 package xyz.chronoziel.fastfarmer.panel;
 
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -29,31 +28,7 @@ public class Painter {
 		GameElements gameElements = GameElements.getInstance();
 		Board gameBoard = gameElements.getBoard();
 
-		// oh god i found out i can declare a class in here lmfao
-		class TileCalculator {
-			/**
-			 * Calculates how wide/tall the tiles could be and returns the smallest length
-			 * 
-			 * @return the tile diameter
-			 */
-			public int getTileDiameter() {
-				Dimension panelDimensions = gameElements.getGamePanel().getSize();
-				int panelHeight = panelDimensions.height;
-				int panelWidth = panelDimensions.width;
-				int tilesHigh = gameBoard.getRowsHigh();
-				int tilesWide = gameBoard.getColumnsWide();
-
-				int potentialTileHeight = (int) ((double) panelHeight / (double) tilesHigh);
-				int potentialTileWidth = (int) ((double) panelWidth / (double) tilesWide);
-
-				if (potentialTileHeight < potentialTileWidth)
-					return potentialTileHeight;
-				return potentialTileWidth;
-
-			}
-		}
-
-		int tileDiameter = (new TileCalculator()).getTileDiameter();
+		int tileDiameter = gameBoard.getTileDiameter();
 		for (int row = 0; row < gameBoard.getRowsHigh(); row++) {
 			for (int column = 0; column < gameBoard.getColumnsWide(); column++) {
 				int pivotX = column * tileDiameter;

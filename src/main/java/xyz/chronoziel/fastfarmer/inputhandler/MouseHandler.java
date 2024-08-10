@@ -8,6 +8,8 @@ import xyz.chronoziel.fastfarmer.GameElements;
 
 public class MouseHandler implements MouseListener, MouseMotionListener {
 
+	boolean mouseHeld = false;
+
 	public MouseHandler() {
 	}
 
@@ -23,20 +25,27 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Mouse Clicked");
 		GameElements.getInstance().getPalette().getSelectedTool().useTool();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseHeld = true;
+		new Thread(() -> {
+			while(mouseHeld) {
+				mouseClicked(e);
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}).start();
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		mouseHeld = false;
 	}
 
 	@Override

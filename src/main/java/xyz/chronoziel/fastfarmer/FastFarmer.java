@@ -25,9 +25,9 @@ public class FastFarmer {
 	/*
 	 * TODO:
 	 * - Create Tile Grid
-	 * - - Ensure aspect ratio of tile is kept (all square)
 	 * - - Add way to expand grid using money
 	 * - Allow option to till tiles
+	 * - - Have soil turn back into grass if not watered
 	 * - - Have tiles require water to remain tilled
 	 * - - Water sprinkler upgrade?
 	 * - Allow option to plant seeds
