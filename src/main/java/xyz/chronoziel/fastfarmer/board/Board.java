@@ -5,6 +5,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import xyz.chronoziel.fastfarmer.GameElements;
+import xyz.chronoziel.fastfarmer.board.tile.Crop;
+import xyz.chronoziel.fastfarmer.board.tile.Tile;
+import xyz.chronoziel.fastfarmer.board.tile.Tiles;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 import xyz.chronoziel.fastfarmer.constants.TileConstants;
 import xyz.chronoziel.fastfarmer.util.ThreadUtil;

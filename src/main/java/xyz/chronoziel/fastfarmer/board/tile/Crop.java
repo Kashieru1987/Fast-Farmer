@@ -1,9 +1,10 @@
-package xyz.chronoziel.fastfarmer.board;
+package xyz.chronoziel.fastfarmer.board.tile;
 
 import java.awt.Color;
 import java.awt.Point;
 
 import xyz.chronoziel.fastfarmer.GameElements;
+import xyz.chronoziel.fastfarmer.board.Board;
 import xyz.chronoziel.fastfarmer.tools.Useable;
 
 public abstract class Crop extends Tile implements Useable {

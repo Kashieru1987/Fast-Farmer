@@ -1,4 +1,4 @@
-package xyz.chronoziel.fastfarmer.board;
+package xyz.chronoziel.fastfarmer.board.tile;
 
 public enum CropStages {
 

@@ -4,8 +4,8 @@ import java.awt.Point;
 
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.board.Board;
-import xyz.chronoziel.fastfarmer.board.Tile;
-import xyz.chronoziel.fastfarmer.board.Tiles;
+import xyz.chronoziel.fastfarmer.board.tile.Tile;
+import xyz.chronoziel.fastfarmer.board.tile.Tiles;
 
 public abstract class Tool implements Useable, Cloneable {
 

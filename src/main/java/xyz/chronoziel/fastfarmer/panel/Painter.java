@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.board.Board;
-import xyz.chronoziel.fastfarmer.board.Crop;
-import xyz.chronoziel.fastfarmer.board.Tile;
+import xyz.chronoziel.fastfarmer.board.tile.Crop;
+import xyz.chronoziel.fastfarmer.board.tile.Tile;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 
 public class Painter {

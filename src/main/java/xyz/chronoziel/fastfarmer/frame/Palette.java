@@ -9,8 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
-import xyz.chronoziel.fastfarmer.board.Crop;
 import xyz.chronoziel.fastfarmer.board.MouseModes;
+import xyz.chronoziel.fastfarmer.board.tile.Crop;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 import xyz.chronoziel.fastfarmer.constants.PaletteConstants;
 import xyz.chronoziel.fastfarmer.tools.Tool;
