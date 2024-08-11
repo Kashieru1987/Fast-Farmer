@@ -29,7 +29,7 @@ public abstract class Tool implements Useable, Cloneable {
 		}
 
 		@Override
-		public void useTool() {
+		public void use() {
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
@@ -57,7 +57,7 @@ public abstract class Tool implements Useable, Cloneable {
 		}
 		
 		@Override
-		public void useTool() {
+		public void use() {
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
@@ -83,7 +83,7 @@ public abstract class Tool implements Useable, Cloneable {
 		}
 		
 		@Override
-		public void useTool() {
+		public void use() {
 		}
 		
 		@Override

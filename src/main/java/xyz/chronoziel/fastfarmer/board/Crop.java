@@ -2,14 +2,16 @@ package xyz.chronoziel.fastfarmer.board;
 
 import java.awt.Color;
 
-public abstract class Crop extends Tile {
+import xyz.chronoziel.fastfarmer.tools.Useable;
+
+public abstract class Crop extends Tile implements Useable {
 
 	private CropStages cropStage;
 	protected Color color;
 
-	private Crop() {
+	private Crop(CropStages cropStage) {
 		super(Tiles.WET_SOIL);
-		this.cropStage = CropStages.SEED;
+		this.cropStage = cropStage;
 	}
 
 	public Color getColor() {
@@ -23,8 +25,23 @@ public abstract class Crop extends Tile {
 	public static class Wheat extends Crop {
 		
 		public Wheat() {
-			super();
+			this(CropStages.SEED);
+		}
+
+		public Wheat(CropStages cropStage) {
+			super(cropStage);
 			this.color = Color.YELLOW;
+		}
+
+		@Override
+		public void use() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public String toString() {
+			return "Wheat";
 		}
 		
 	}
@@ -32,8 +49,23 @@ public abstract class Crop extends Tile {
 	public static class Pumpkin extends Crop {
 		
 		public Pumpkin() {
-			super();
+			this(CropStages.SEED);
+		}
+
+		public Pumpkin(CropStages cropStage) {
+			super(cropStage);
 			this.color = Color.ORANGE;
+		}
+
+		@Override
+		public void use() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public String toString() {
+			return "Pumpkin";
 		}
 
 	}

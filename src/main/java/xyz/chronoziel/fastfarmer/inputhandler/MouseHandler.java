@@ -25,7 +25,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		GameElements.getInstance().getPalette().getSelectedTool().useTool();
+		GameElements.getInstance().getPalette().getSelectedTool().use();
 	}
 
 	@Override

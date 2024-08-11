@@ -1,5 +1,5 @@
 package xyz.chronoziel.fastfarmer.tools;
 
 public interface Useable {
-	public void useTool();
+	public void use();
 }
