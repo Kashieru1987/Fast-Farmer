@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Tile {
 
-	private TileTypes tileType;
+	protected TileTypes tileType;
 	private Color color;
 
 

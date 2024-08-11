@@ -5,9 +5,10 @@ import javax.swing.JSplitPane;
 
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
+import xyz.chronoziel.fastfarmer.util.FPSListener;
 
 @SuppressWarnings("serial")
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements FPSListener {
 
 	public GameFrame() {
 		this.setTitle(GeneralConstants.TITLE);
@@ -26,12 +27,15 @@ public class GameFrame extends JFrame {
 		
 		gameElements.getGamePanel().addMouseListener(gameElements.getMouseHandler());
 		gameElements.getGamePanel().addMouseMotionListener(gameElements.getMouseHandler());
+		gameElements.getGamePanel().addFPSListener(this);
 		
-//		this.addMouseListener(gameElements.getMouseHandler());
-//		this.addMouseMotionListener(gameElements.getMouseHandler());
-
 		gameElements.startGameLoop();
 
+	}
+
+	@Override
+	public void updateFPS(long fps) {
+		this.setTitle(GeneralConstants.TITLE + " - " + fps + " FPS");
 	}
 
 }

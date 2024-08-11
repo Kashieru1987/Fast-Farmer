@@ -69,7 +69,7 @@ public class Board {
 		pos = findOnBoard(pos);
 		return isValidIndex(pos.y, pos.x);
 	}
-	
+
 	public boolean isValidIndex(int row, int column) {
 		boolean validRow = row >= 0 && row < this.getRowsHigh();
 		boolean validColumn = column >= 0 && column < this.getColumnsWide();
@@ -96,8 +96,8 @@ public class Board {
 	public void setTile(int row, int column, Tile tile) {
 		getRow(row).set(column, tile);
 
-		if(tile instanceof Crop crop) {
-			addCropThreads(row, column, crop);
+		if (tile instanceof Crop) {
+			addCropThreads(row, column, tile);
 			return;
 		}
 		addTileThreads(row, column, tile);
@@ -105,36 +105,45 @@ public class Board {
 	}
 
 	private void addTileThreads(int row, int column, Tile tile) {
-		switch(tile.getTileType()) {
+		if (tile.getTileType().equals(TileTypes.GRASS))
+			return;
 
-		case DRY_SOIL -> {
+		new Thread(() -> {
+			ThreadUtil.sleepAndVary(tile.getTileType().getTimeout(), TileConstants.SOIL_TIMEOUT_VARIANCE);
+			
+			if(getTile(row, column) instanceof Crop)
+				return;
+			
+			if (getTile(row, column).getTileType().equals(tile.getTileType())) {
+				setTile(row, column, new Tile(tile.getTileType().getNextRegression()));
+			}
+		}).start();
+	}
+
+	private void addCropThreads(int row, int column, Tile tile) {
+		if (tile instanceof Crop crop) {
+			// do wheat progression thread
 			new Thread(() -> {
-				
-				ThreadUtil.sleepAndVary(TileConstants.DRY_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
-				if(getTile(row, column).equals(tile)) {
+				ThreadUtil.sleepAndVary(crop.getCropStage().getTimeout(), TileConstants.CROP_TIMEOUT_VARIANCE);
+				if (((Crop) getTile(row, column)).getCropType().equals(crop.getCropType())) {
+					setTile(row, column, Crop.createCrop(crop.getCropType(), crop.getCropStage().getNextCropStage(), crop.getTileType()));
+				}
+			}).start();
+
+			// do soil regression thread
+			new Thread(() -> {
+				ThreadUtil.sleepAndVary(crop.getTileType().getTimeout(), TileConstants.SOIL_TIMEOUT_VARIANCE);
+				Crop currentCrop = (Crop) getTile(row, column);
+				if (getTile(row, column).getTileType().equals(crop.getTileType())) {
+					setTile(row, column, Crop.createCrop(currentCrop.getCropType(), currentCrop.getCropStage(), currentCrop.getTileType().getNextRegression()));
+				}
+
+				if(getTile(row, column).getTileType().equals(TileTypes.GRASS)) {
 					setTile(row, column, new Tile(TileTypes.GRASS));
 				}
-				
-				
+
 			}).start();
 		}
-
-		case WET_SOIL -> {
-			new Thread(() -> {
-				
-				ThreadUtil.sleepAndVary(TileConstants.WET_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
-				if(getTile(row, column).equals(tile)) {
-					setTile(row, column, new Tile(TileTypes.DRY_SOIL));
-				}
-				
-			}).start();
-		}
-
-		default -> {}
-		}
-	}
-	
-	private void addCropThreads(int row, int column, Crop crop) {
 	}
 
 	public ArrayList<ArrayList<Tile>> getRaw() {

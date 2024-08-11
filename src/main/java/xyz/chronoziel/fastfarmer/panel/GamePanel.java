@@ -9,13 +9,19 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
+import xyz.chronoziel.fastfarmer.util.FPSListener;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
 
+	private FPSListener listenerFPS;
 	private ArrayList<Consumer<Graphics2D>> paintQueue;
 	private boolean doGameLoop;
-	private int fpsCounter;
+	private long fpsCounter;
+
+	public void addFPSListener(FPSListener listenerFPS) {
+		this.listenerFPS = listenerFPS;
+	}
 
 	public void setPaintQueue(ArrayList<Consumer<Graphics2D>> paintQueue) {
 		this.paintQueue = paintQueue;
@@ -49,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 		double delta = 0;
 
 		Timer fpsShouter = new Timer(1000, actionevent -> {
-			System.out.println("FPS - " + fpsCounter);
+			listenerFPS.updateFPS(fpsCounter);
 			fpsCounter = 0;
 		});
 		fpsShouter.start();

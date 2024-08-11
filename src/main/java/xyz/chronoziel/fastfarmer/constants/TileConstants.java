@@ -12,4 +12,9 @@ public class TileConstants {
 	public final static int WET_SOIL_TIMEOUT = MINUTES * 2;
 	public final static int SOIL_TIMEOUT_VARIANCE = SECONDS * 30;
 
+	public final static int SEED_TIMEOUT = MINUTES * 1;
+	public final static int SPROUT_TIMEOUT = MINUTES * 1 + SECONDS * 30;
+	public final static int PLANT_TIMEOUT = MINUTES * 2;
+	public final static int CROP_TIMEOUT_VARIANCE = SECONDS * 30;
+
 }
