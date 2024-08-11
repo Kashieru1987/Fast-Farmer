@@ -53,7 +53,7 @@ public class Board {
 
 	}
 
-	public Point findOnBoard(Point pos) {
+	private Point findOnBoard(Point pos) {
 		double tileDiameter = getTileDiameter();
 		int posX = (int) ((double) pos.x / tileDiameter);
 		int posY = (int) ((double) pos.y / tileDiameter);

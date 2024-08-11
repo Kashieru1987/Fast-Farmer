@@ -11,19 +11,6 @@ public class Tile {
 	public Tile(Tiles tileType) {
 		this.tileType = tileType;
 		this.color = tileType.getColor();
-		
-//		switch(tileType) {
-//		case DRY_SOIL -> {
-//			Timer timer = new Timer(2000, ActionEvent -> {
-//				
-//				
-//
-//			});
-//			timer.start();
-//		}
-//		default -> {}
-//		}
-		
 	}
 
 	public Color getColor() {
