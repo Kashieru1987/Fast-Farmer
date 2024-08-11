@@ -93,7 +93,17 @@ public class Board {
 	public void setTile(int row, int column, Tile tile) {
 		getRow(row).set(column, tile);
 
+		if(tile instanceof Crop crop) {
+			addCropThreads(row, column, crop);
+			return;
+		}
+		addTileThreads(row, column, tile);
+
+	}
+
+	private void addTileThreads(int row, int column, Tile tile) {
 		switch(tile.getTileType()) {
+
 		case DRY_SOIL -> {
 			new Thread(() -> {
 				
@@ -105,6 +115,7 @@ public class Board {
 				
 			}).start();
 		}
+
 		case WET_SOIL -> {
 			new Thread(() -> {
 				
@@ -115,9 +126,12 @@ public class Board {
 				
 			}).start();
 		}
+
 		default -> {}
 		}
-
+	}
+	
+	private void addCropThreads(int row, int column, Crop crop) {
 	}
 
 	public ArrayList<ArrayList<Tile>> getRaw() {

@@ -30,8 +30,6 @@ public abstract class Tool implements Useable, Cloneable {
 
 		@Override
 		public void useTool() {
-			System.out.println("hoe used");
-			
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
@@ -60,8 +58,6 @@ public abstract class Tool implements Useable, Cloneable {
 		
 		@Override
 		public void useTool() {
-			System.out.println("watering can used");
-
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
@@ -88,7 +84,6 @@ public abstract class Tool implements Useable, Cloneable {
 		
 		@Override
 		public void useTool() {
-			System.out.println("shovel used");
 		}
 		
 		@Override
