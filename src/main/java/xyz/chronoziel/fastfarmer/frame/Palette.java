@@ -1,6 +1,5 @@
 package xyz.chronoziel.fastfarmer.frame;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -20,15 +19,17 @@ import xyz.chronoziel.fastfarmer.tools.Useable;
 @SuppressWarnings("serial")
 public class Palette extends JScrollPane {
 
-	MouseModes mouseMode;
+	private MouseModes mouseMode;
 	
-	JComboBox<Useable> selector;
+	private JComboBox<Useable> selector;
 
-	Tool[] tools = { new Tool.Hoe(), new Tool.WateringCan(), new Tool.Shovel() };
-	Tool selectedTool = tools[0];
+	private Tool[] tools = { new Tool.Hoe(), new Tool.WateringCan(), new Tool.Shovel() };
+	private Tool selectedTool = tools[0];
 
-	Crop[] crops = { new Crop.Wheat(), new Crop.Pumpkin() };
-	Crop selectedCrop = crops[0];
+	private Crop[] crops = { new Crop.Wheat(), new Crop.Pumpkin() };
+	private Crop selectedCrop = crops[0];
+
+	private Useable selectedItem = selectedTool;
 
 	public Palette() {
 		this.setMinimumSize(PaletteConstants.SIZE);
@@ -70,9 +71,10 @@ public class Palette extends JScrollPane {
 		selector.setSelectedIndex(0);
 		selector.setMaximumSize(new Dimension(selector.getMaximumSize().width, selector.getPreferredSize().height));
 		selector.addActionListener(actionevent -> {
+			selectedItem = selector.getItemAt(selector.getSelectedIndex());
 			switch(mouseMode) {
-			case TOOLS -> selectedTool = (Tool) selector.getItemAt(selector.getSelectedIndex());
-			case SEEDS -> selectedCrop = (Crop) selector.getItemAt(selector.getSelectedIndex());
+			case TOOLS -> selectedTool = (Tool) selectedItem;
+			case SEEDS -> selectedCrop = (Crop) selectedItem;
 			}
 		});
 
@@ -83,8 +85,8 @@ public class Palette extends JScrollPane {
 
 	}
 
-	public Tool getSelectedTool() {
-		return this.selectedTool;
+	public Useable getSelectedItem() {
+		return this.selectedItem;
 	}
 
 }

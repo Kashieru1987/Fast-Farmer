@@ -8,7 +8,7 @@ import xyz.chronoziel.fastfarmer.GameElements;
 
 public class MouseHandler implements MouseListener, MouseMotionListener {
 
-	boolean mouseHeld = false;
+	private boolean mouseHeld = false;
 
 	public MouseHandler() {
 	}
@@ -25,7 +25,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		GameElements.getInstance().getPalette().getSelectedTool().use();
+		GameElements.getInstance().getPalette().getSelectedItem().use();
 	}
 
 	@Override

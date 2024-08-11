@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.board.Board;
+import xyz.chronoziel.fastfarmer.board.Crop;
 import xyz.chronoziel.fastfarmer.board.Tile;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 
@@ -40,6 +41,17 @@ public class Painter {
 				g2.fillRect(pivotX, pivotY, tileDiameter, tileDiameter);
 				g2.setColor(GeneralConstants.GRID_LINE_COLOR);
 				g2.drawRect(pivotX, pivotY, tileDiameter, tileDiameter);
+
+				if (currentTile instanceof Crop crop) {
+					int cropSize = crop.getCropStage().getSize();
+
+					pivotX += tileDiameter / 2 - cropSize / 2;
+					pivotY += tileDiameter / 2 - cropSize / 2;
+
+					g2.setColor(crop.getCropColor());
+					g2.fillOval(pivotX, pivotY, cropSize, cropSize);
+					
+				}
 			}
 		}
 
@@ -48,7 +60,7 @@ public class Painter {
 	private static void MousePointer(Graphics2D g2) {
 		g2.setColor(GeneralConstants.MOUSE_POINTER_COLOR);
 		Point p = GameElements.getInstance().getMousePosition();
-		g2.fillOval(p.x-2, p.y-2, 4, 4);
+		g2.fillOval(p.x - 2, p.y - 2, 4, 4);
 	}
 
 }

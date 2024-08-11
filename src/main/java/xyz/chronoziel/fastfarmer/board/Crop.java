@@ -1,21 +1,23 @@
 package xyz.chronoziel.fastfarmer.board;
 
 import java.awt.Color;
+import java.awt.Point;
 
+import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.tools.Useable;
 
 public abstract class Crop extends Tile implements Useable {
 
 	private CropStages cropStage;
-	protected Color color;
+	protected Color cropColor;
 
 	private Crop(CropStages cropStage) {
 		super(Tiles.WET_SOIL);
 		this.cropStage = cropStage;
 	}
 
-	public Color getColor() {
-		return this.color;
+	public Color getCropColor() {
+		return this.cropColor;
 	}
 	
 	public CropStages getCropStage() {
@@ -30,12 +32,25 @@ public abstract class Crop extends Tile implements Useable {
 
 		public Wheat(CropStages cropStage) {
 			super(cropStage);
-			this.color = Color.YELLOW;
+			this.cropColor = Color.YELLOW;
 		}
 
 		@Override
 		public void use() {
-			// TODO Auto-generated method stub
+			GameElements gameElements = GameElements.getInstance();
+			Board board = gameElements.getBoard();
+			Point pos = gameElements.getMousePosition();
+			
+			if(!board.isValidIndex(pos))
+				return;
+			
+			Tile tile = board.getTile(pos);
+			if(tile instanceof Crop)
+				return;
+			
+			if(tile.getTileType().equals(Tiles.WET_SOIL)) {
+				board.setTile(pos, new Crop.Wheat());
+			}
 			
 		}
 		
@@ -54,13 +69,26 @@ public abstract class Crop extends Tile implements Useable {
 
 		public Pumpkin(CropStages cropStage) {
 			super(cropStage);
-			this.color = Color.ORANGE;
+			this.cropColor = Color.ORANGE;
 		}
 
 		@Override
 		public void use() {
-			// TODO Auto-generated method stub
+			GameElements gameElements = GameElements.getInstance();
+			Board board = gameElements.getBoard();
+			Point pos = gameElements.getMousePosition();
 			
+			if(!board.isValidIndex(pos)) 
+				return;
+			
+			Tile tile = board.getTile(pos);
+			if(tile instanceof Crop)
+				return;
+			
+
+			if(tile.getTileType().equals(Tiles.WET_SOIL)) {
+				board.setTile(pos, new Crop.Pumpkin());
+			}
 		}
 		
 		@Override

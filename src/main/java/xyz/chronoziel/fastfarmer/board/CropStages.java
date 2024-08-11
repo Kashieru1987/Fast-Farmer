@@ -2,9 +2,9 @@ package xyz.chronoziel.fastfarmer.board;
 
 public enum CropStages {
 
-	SEED(2),
-	SPROUT(4),
-	PLANT(8);
+	SEED(4),
+	SPROUT(8),
+	PLANT(16);
 	
 	private int size;
 	
