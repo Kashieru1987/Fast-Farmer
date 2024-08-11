@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.board.tile.Crop;
 import xyz.chronoziel.fastfarmer.board.tile.Tile;
-import xyz.chronoziel.fastfarmer.board.tile.Tiles;
+import xyz.chronoziel.fastfarmer.board.tile.TileTypes;
 import xyz.chronoziel.fastfarmer.constants.GeneralConstants;
 import xyz.chronoziel.fastfarmer.constants.TileConstants;
 import xyz.chronoziel.fastfarmer.util.ThreadUtil;
@@ -29,7 +29,7 @@ public class Board {
 		for (int i = 0; i < height; i++) {
 			ArrayList<Tile> row = new ArrayList<Tile>();
 			for (int n = 0; n < width; n++) {
-				row.add(new Tile(Tiles.GRASS));
+				row.add(new Tile(TileTypes.GRASS));
 			}
 			board.add(row);
 		}
@@ -112,7 +112,7 @@ public class Board {
 				
 				ThreadUtil.sleepAndVary(TileConstants.DRY_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
 				if(getTile(row, column).equals(tile)) {
-					setTile(row, column, new Tile(Tiles.GRASS));
+					setTile(row, column, new Tile(TileTypes.GRASS));
 				}
 				
 				
@@ -124,7 +124,7 @@ public class Board {
 				
 				ThreadUtil.sleepAndVary(TileConstants.WET_SOIL_TIMEOUT, TileConstants.SOIL_TIMEOUT_VARIANCE);
 				if(getTile(row, column).equals(tile)) {
-					setTile(row, column, new Tile(Tiles.DRY_SOIL));
+					setTile(row, column, new Tile(TileTypes.DRY_SOIL));
 				}
 				
 			}).start();

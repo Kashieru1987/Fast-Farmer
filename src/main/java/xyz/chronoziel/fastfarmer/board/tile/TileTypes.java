@@ -2,7 +2,7 @@ package xyz.chronoziel.fastfarmer.board.tile;
 
 import java.awt.Color;
 
-public enum Tiles {
+public enum TileTypes {
 
 	GRASS(new Color(0, 128, 0)),
 	DRY_SOIL(new Color(111, 78, 55)),
@@ -10,7 +10,7 @@ public enum Tiles {
 
 	Color color;
 
-	private Tiles(Color color) {
+	private TileTypes(Color color) {
 		this.color = color;
 	}
 	

@@ -5,7 +5,7 @@ import java.awt.Point;
 import xyz.chronoziel.fastfarmer.GameElements;
 import xyz.chronoziel.fastfarmer.board.Board;
 import xyz.chronoziel.fastfarmer.board.tile.Tile;
-import xyz.chronoziel.fastfarmer.board.tile.Tiles;
+import xyz.chronoziel.fastfarmer.board.tile.TileTypes;
 
 public abstract class Tool implements Useable, Cloneable {
 
@@ -37,8 +37,8 @@ public abstract class Tool implements Useable, Cloneable {
 			if(!board.isValidIndex(pos))
 				return;
 			
-			if(board.getTile(pos).getTileType().equals(Tiles.GRASS)) {
-				board.setTile(pos, new Tile(Tiles.DRY_SOIL));
+			if(board.getTile(pos).getTileType().equals(TileTypes.GRASS)) {
+				board.setTile(pos, new Tile(TileTypes.DRY_SOIL));
 			}
 			
 		}
@@ -65,8 +65,8 @@ public abstract class Tool implements Useable, Cloneable {
 			if(!board.isValidIndex(pos))
 				return;
 			
-			if(board.getTile(pos).getTileType().equals(Tiles.DRY_SOIL)) {
-				board.setTile(pos, new Tile(Tiles.WET_SOIL));
+			if(board.getTile(pos).getTileType().equals(TileTypes.DRY_SOIL)) {
+				board.setTile(pos, new Tile(TileTypes.WET_SOIL));
 			}
 		}
 

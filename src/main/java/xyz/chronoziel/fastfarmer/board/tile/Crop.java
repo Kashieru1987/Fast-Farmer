@@ -10,11 +10,16 @@ import xyz.chronoziel.fastfarmer.tools.Useable;
 public abstract class Crop extends Tile implements Useable {
 
 	private CropStages cropStage;
+	protected CropTypes cropType;
 	protected Color cropColor;
 
-	private Crop(CropStages cropStage) {
-		super(Tiles.WET_SOIL);
+	private Crop(CropStages cropStage, TileTypes tileType) {
+		super(tileType);
 		this.cropStage = cropStage;
+	}
+
+	private Crop(CropStages cropStage) {
+		this(cropStage, TileTypes.WET_SOIL);
 	}
 
 	public Color getCropColor() {
@@ -33,7 +38,8 @@ public abstract class Crop extends Tile implements Useable {
 
 		public Wheat(CropStages cropStage) {
 			super(cropStage);
-			this.cropColor = Color.YELLOW;
+			this.cropType = CropTypes.WHEAT;
+			this.cropColor = cropType.getCropColor();
 		}
 
 		@Override
@@ -49,7 +55,7 @@ public abstract class Crop extends Tile implements Useable {
 			if(tile instanceof Crop)
 				return;
 			
-			if(tile.getTileType().equals(Tiles.WET_SOIL)) {
+			if(tile.getTileType().equals(TileTypes.WET_SOIL)) {
 				board.setTile(pos, new Crop.Wheat());
 			}
 			
@@ -70,7 +76,8 @@ public abstract class Crop extends Tile implements Useable {
 
 		public Pumpkin(CropStages cropStage) {
 			super(cropStage);
-			this.cropColor = Color.ORANGE;
+			this.cropType = CropTypes.PUMPKIN;
+			this.cropColor = cropType.getCropColor();
 		}
 
 		@Override
@@ -87,7 +94,7 @@ public abstract class Crop extends Tile implements Useable {
 				return;
 			
 
-			if(tile.getTileType().equals(Tiles.WET_SOIL)) {
+			if(tile.getTileType().equals(TileTypes.WET_SOIL)) {
 				board.setTile(pos, new Crop.Pumpkin());
 			}
 		}
