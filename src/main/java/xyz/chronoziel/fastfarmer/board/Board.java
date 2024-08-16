@@ -125,15 +125,33 @@ public class Board {
 			// do wheat progression thread
 			new Thread(() -> {
 				ThreadUtil.sleepAndVary(crop.getCropStage().getTimeout(), TileConstants.CROP_TIMEOUT_VARIANCE);
-				if (((Crop) getTile(row, column)).getCropType().equals(crop.getCropType())) {
-					setTile(row, column, Crop.createCrop(crop.getCropType(), crop.getCropStage().getNextCropStage(), crop.getTileType()));
+
+				Tile currentTile = getTile(row, column);
+
+				if(currentTile instanceof Crop currentCrop) {
+
+					if(!currentCrop.getCropType().equals(crop.getCropType()))
+						return;
+					
+					Crop progressedCrop = Crop.createCrop(crop.getCropType(), crop.getCropStage().getNextCropStage(), currentCrop.getTileType());
+
+					setTile(row, column, progressedCrop);
+					
 				}
+				
 			}).start();
 
 			// do soil regression thread
 			new Thread(() -> {
 				ThreadUtil.sleepAndVary(crop.getTileType().getTimeout(), TileConstants.SOIL_TIMEOUT_VARIANCE);
-				Crop currentCrop = (Crop) getTile(row, column);
+
+				Tile currentTile = getTile(row, column);
+				
+				if(!(currentTile instanceof Crop))
+					return;
+				
+				Crop currentCrop = (Crop) currentTile;
+
 				if (getTile(row, column).getTileType().equals(crop.getTileType())) {
 					setTile(row, column, Crop.createCrop(currentCrop.getCropType(), currentCrop.getCropStage(), currentCrop.getTileType().getNextRegression()));
 				}

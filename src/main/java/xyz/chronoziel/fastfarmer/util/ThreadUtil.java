@@ -22,6 +22,11 @@ public class ThreadUtil {
 			sleep(sleepms + varyms);
 			return;
 		}
+
+		long altTimeoutTime = sleepms - varyms;
+		if(altTimeoutTime <= 2)
+			return;
+
 		sleep(sleepms - varyms);
 	}
 
