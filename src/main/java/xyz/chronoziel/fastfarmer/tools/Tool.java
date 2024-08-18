@@ -34,16 +34,16 @@ public abstract class Tool implements Useable, Cloneable {
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
-			
-			if(!board.isValidIndex(pos))
+
+			if (!board.isValidIndex(pos))
 				return;
-			
-			if(board.getTile(pos).getTileType().equals(TileTypes.GRASS)) {
+
+			if (board.getTile(pos).getTileType().equals(TileTypes.GRASS)) {
 				board.setTile(pos, new Tile(TileTypes.DRY_SOIL));
 			}
-			
+
 		}
-		
+
 		@Override
 		public String toString() {
 			return "Hoe";
@@ -52,23 +52,23 @@ public abstract class Tool implements Useable, Cloneable {
 	}
 
 	public static class WateringCan extends Tool {
-		
+
 		public WateringCan() {
 			super();
 		}
-		
+
 		@Override
 		public void use() {
 			GameElements gameElements = GameElements.getInstance();
 			Board board = gameElements.getBoard();
 			Point pos = gameElements.getMousePosition();
 
-			if(!board.isValidIndex(pos))
+			if (!board.isValidIndex(pos))
 				return;
-			
-			if(board.getTile(pos).getTileType().equals(TileTypes.DRY_SOIL)) {
 
-				if(board.getTile(pos) instanceof Crop crop) {
+			if (board.getTile(pos).getTileType().equals(TileTypes.DRY_SOIL)) {
+
+				if (board.getTile(pos) instanceof Crop crop) {
 					board.setTile(pos, Crop.createCrop(crop.getCropType(), crop.getCropStage(), TileTypes.WET_SOIL));
 					return;
 				}
@@ -84,15 +84,30 @@ public abstract class Tool implements Useable, Cloneable {
 	}
 
 	public static class Shovel extends Tool {
-		
+
 		public Shovel() {
 			super();
 		}
-		
+
 		@Override
 		public void use() {
+			GameElements gameElements = GameElements.getInstance();
+			Board board = gameElements.getBoard();
+			Point pos = gameElements.getMousePosition();
+
+			if (!board.isValidIndex(pos))
+				return;
+
+			Tile tile = board.getTile(pos);	
+
+			if (!(tile instanceof Crop)) 
+				return;
+
+			Crop crop = (Crop) tile;
+
+			board.setTile(pos, new Tile(crop.getTileType()));
 		}
-		
+
 		@Override
 		public String toString() {
 			return "Shovel";
